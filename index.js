@@ -10,13 +10,14 @@ const days = (year) => {
     return diffDays;
 }
 
-const generateBigImage = async (colorArray) => {
+const generateBigImage = async (name, colorArray) => {
+    console.log(colorArray)
     const fs = require('fs')
     const { createCanvas } = require('canvas')
     const lineHeight = 5;
 
     const width = 1200
-    const height = colorArray.length * 5
+    const height = colorArray.length * lineHeight
 
     const canvas = createCanvas(width, height)
     const context = canvas.getContext('2d')
@@ -27,7 +28,7 @@ const generateBigImage = async (colorArray) => {
         context.fillRect(0, index * lineHeight, width, lineHeight)
     })
     const buffer = canvas.toBuffer('image/png')
-    await fs.writeFileSync('./output/test.png', buffer)
+    await fs.writeFileSync(`./output/${name}.png`, buffer)
 
 }
 
@@ -70,7 +71,7 @@ const generator = async () => {
         //await generateImage(`day-${i}`, { width: 100, height: 100 }, background );
     }
 
-    await generateBigImage(colorArray)
+    await generateBigImage('year', colorArray)
 
 
 }

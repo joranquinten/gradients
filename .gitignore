@@ -91,3 +91,5 @@ sw.*
 
 /plugins/image-map.js
 # /tmp
+
+/output
